@@ -1,63 +1,49 @@
-# Verge Chartering Desk Demo
+# Verge Desk App Demo
 
-Internal demo concept for a clean Verge Shipbrokers chartering and offshore desk tool.
+Internal demo concept for Verge Shipbrokers.
 
-This is not an official Verge publication until approved.
+This repo now uses the Verge-App structure as the parent idea: dark navy sidebar, top bar and light canvas. The app is divided into three desks:
 
-## What is included
+1. Repair
+2. Products
+3. Chartering
 
-- Minimalistic white and navy glass design
-- Position list system saved in browser local storage
-- Add, filter, delete and export vessel positions
-- Demo position loader
+## Current modules
+
+### Repair
+
+- Repair case register
+- Underwater, afloat repair, shipyard and inspection case input
+- Scope safe to share
+- Private broker notes
+- Copy-ready supplier request
+- CSV export
+
+### Products
+
+- Spare parts and product enquiry register
+- Maker, model, part number and required delivery time fields
+- Supplier request generator
+- CSV export
+
+### Chartering
+
+- Vessel position list
+- Offshore support, towage, PSV, AHTS, barges and project vessel fields
 - Charterparty reference cards
-- Offshore and chartering workflow overview
-- Chain protection checklist
-- Supplier / owner enquiry message generator using ***Q*** and ***UQ*** markers
+- Owner / supplier request generator
+- CSV export
 
-## Relevant charterparty references included
+## Important note
 
-- SUPPLYTIME for offshore support vessels, PSV, AHTS and OSV time charter work
-- TOWCON for lump sum towage
-- TOWHIRE for daily hire towage
-- BARECON for bareboat charter
-- HEAVYCON for heavy lift and project cargo
-- PROJECTCON for project cargo work
-- GENCON for voyage charter reference
-- NYPE for time charter reference
-- WINDTIME for offshore wind support
-- GUARDCON for maritime security services
-- ASBATANKVOY for tanker voyage reference
+The repository is public. Do not add real client names, owner names, supplier names, direct emails, phone numbers or sensitive chain information.
 
-Always verify the latest form and rider clauses before using anything commercially.
+For real use, this should be moved into a private app with login, database, permissions and audit trail.
 
-## How to run locally
+## Files used by the current app
 
-Open `index.html` in your browser.
+- `index.html`
+- `verge-parent.css`
+- `verge-parent.js`
 
-No installation is required.
-
-## How to publish with GitHub Pages
-
-1. Open the repository on GitHub.
-2. Go to Settings.
-3. Go to Pages.
-4. Select branch `main` and folder `/root`.
-5. Save.
-6. GitHub will create a public demo link.
-
-## Suggested next improvements
-
-- Add password protection or move to private repo if used with real market information
-- Add proper database instead of browser local storage
-- Add separate owner, charterer and broker contact database
-- Add enquiry pipeline with stages: Received, Clarifying, Sourcing, Quoted, Subjects, Fixed, Lost
-- Add document upload placeholders for CP, specs, GA plans and certificates
-- Add permission levels before using inside a company
-- Add audit trail for who changed a position
-
-## Important commercial note
-
-Do not store real owner names, client names, phone numbers, emails or sensitive chain information in a public GitHub Pages demo.
-
-For real use, the application should be private and backed by a secure database.
+The older `styles.css` and `app.js` are kept in the repo for reference but are no longer loaded by `index.html`.
