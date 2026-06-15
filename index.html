@@ -3,255 +3,92 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Verge Chartering Desk Demo</title>
-  <meta name="description" content="Internal demo concept for Verge Shipbrokers chartering and offshore desk workflow." />
-  <link rel="stylesheet" href="styles.css" />
+  <title>Verge Desk App Demo</title>
+  <meta name="description" content="Internal Verge Shipbrokers demo app for repairs, products and chartering." />
+  <link rel="stylesheet" href="verge-parent.css" />
 </head>
 <body>
-  <div class="page-shell">
-    <header class="site-header glass-panel">
-      <div class="brand-mark">
-        <div class="logo-dot">V</div>
-        <div>
-          <p class="eyebrow">Verge Shipbrokers</p>
-          <h1>Chartering Desk Demo</h1>
-        </div>
+  <div class="app-shell">
+    <aside class="v-sidebar" aria-label="Verge modules">
+      <div class="brand-block">
+        <div class="brand-logo">V</div>
+        <div><p class="brand-name">Verge Shipbrokers</p><p class="brand-subtitle">Desk Register</p></div>
       </div>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#desk">Desk</a>
-        <a href="#positions">Positions</a>
-        <a href="#charterparties">Charterparties</a>
-        <a href="#templates">Templates</a>
+      <nav class="module-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-section="home" type="button"><span class="nav-icon">⌂</span><span>Overview</span></button>
+        <button class="nav-item" data-section="repair" type="button"><span class="nav-icon">R</span><span>Repair</span></button>
+        <button class="nav-item" data-section="products" type="button"><span class="nav-icon">P</span><span>Products</span></button>
+        <button class="nav-item" data-section="chartering" type="button"><span class="nav-icon">C</span><span>Chartering</span></button>
       </nav>
-    </header>
+      <div class="sidebar-card"><p class="micro-label">Internal demo</p><p>Keep Verge as the wall between parties. Add only what is needed to quote or proceed.</p></div>
+    </aside>
 
-    <main>
-      <section class="hero-grid" id="desk">
-        <div class="hero-card glass-panel">
-          <p class="eyebrow">Internal concept</p>
-          <h2>Simple control room for chartering, offshore support and vessel opportunities.</h2>
-          <p class="hero-text">Built as a clean demo for tracking positions, filtering enquiries, protecting the broker chain and keeping relevant charterparty forms close when a lead appears.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="#positions">Add position</a>
-            <a class="button secondary" href="#workflow">View deal flow</a>
+    <div class="app-main">
+      <header class="top-bar">
+        <div><p class="micro-label">Live workspace</p><h1 id="viewTitle">Overview</h1></div>
+        <div class="top-actions"><span class="status-pill"><span class="status-dot"></span> Local demo</span><button class="ghost-button" id="seedAll" type="button">Load demo data</button></div>
+      </header>
+
+      <main class="v-canvas">
+        <section class="module-section active" id="home">
+          <div class="hero-panel panel">
+            <div><p class="micro-label">Parent system</p><h2>One Verge app, three commercial desks.</h2><p class="lead">Repair, Products and Chartering now sit inside the same Verge-style parent shell. The app is made to track enquiries, protect the broker chain and move faster without losing control.</p></div>
+            <div class="metric-grid"><div class="metric-card"><span id="repairMetric">0</span><small>Repair cases</small></div><div class="metric-card"><span id="productMetric">0</span><small>Product enquiries</small></div><div class="metric-card"><span id="charterMetric">0</span><small>Vessel positions</small></div></div>
           </div>
-        </div>
-
-        <aside class="glass-panel quick-stats" aria-label="Desk overview">
-          <div>
-            <span class="stat-number" id="statPositions">0</span>
-            <span class="stat-label">Saved positions</span>
+          <div class="module-grid">
+            <article class="panel desk-card" data-jump="repair"><p class="micro-label">01</p><h3>Repair</h3><p>Manage repair, underwater, afloat and shipyard enquiries with scope, port, ETA, supplier status and client updates.</p></article>
+            <article class="panel desk-card" data-jump="products"><p class="micro-label">02</p><h3>Products</h3><p>Track spare parts and product requests by maker, model, part number, urgency, supplier status and quote basis.</p></article>
+            <article class="panel desk-card" data-jump="chartering"><p class="micro-label">03</p><h3>Chartering</h3><p>Track available vessels, chartering leads, charterparty references and filtered supplier or owner messages.</p></article>
           </div>
-          <div>
-            <span class="stat-number" id="statHot">0</span>
-            <span class="stat-label">Hot leads</span>
+          <section class="panel warning-panel"><p class="micro-label">Broker protection</p><h3>Information filter before forwarding</h3><div class="check-grid"><span>Remove direct names, emails and phone numbers</span><span>Hide owner, supplier and end-client identity unless needed</span><span>Keep source and chain details in private notes</span><span>Confirm scope, price basis, exclusions and approval in writing</span></div></section>
+        </section>
+
+        <section class="module-section" id="repair">
+          <div class="section-head"><div><p class="micro-label">Repair desk</p><h2>Marine repair case register</h2><p>For underwater services, afloat repairs, shipyard support and technical coordination.</p></div><button class="ghost-button" data-template="repair" type="button">Copy supplier request</button></div>
+          <div class="split-layout">
+            <form class="panel form-grid" id="repairForm">
+              <label>Vessel / Ref<input name="vessel" required placeholder="Example: MV sample, IMO hidden" /></label><label>Port / Area<input name="port" placeholder="Example: Piraeus, Tuzla, Singapore" /></label>
+              <label>Service type<select name="type"><option>Underwater</option><option>Afloat repair</option><option>Shipyard support</option><option>Spare technical service</option><option>Inspection / attendance</option></select></label><label>ETA / Window<input name="eta" placeholder="Example: 18 June, AGW/WP" /></label>
+              <label>Status<select name="status"><option>Received</option><option>Clarifying</option><option>Sourcing</option><option>Quoted</option><option>Ordered</option><option>Completed</option></select></label><label>Priority<select name="priority"><option>Normal</option><option>Urgent</option><option>Critical</option></select></label>
+              <label class="wide">Scope safe to share<textarea name="scope" placeholder="Only technical and operational details needed for quotation."></textarea></label><label class="wide">Private broker notes<textarea name="privateNotes" placeholder="Client/source/contact/chain details. Do not forward."></textarea></label>
+              <button class="primary-button" type="submit">Save repair case</button>
+            </form>
+            <aside class="panel checklist-panel"><p class="micro-label">Repair control points</p><ul><li>Confirm vessel, port, ETA, ETD and alongside or anchorage.</li><li>Separate firm scope from optional scope.</li><li>Confirm class attendance, permit, weather and restrictions.</li><li>Ask written approval before extras.</li><li>Keep report, photos, CCTV and invoice support ready.</li></ul></aside>
           </div>
-          <div>
-            <span class="stat-number" id="statForms">11</span>
-            <span class="stat-label">CP references</span>
+          <div class="panel table-panel"><div class="table-toolbar"><h3>Repair board</h3><button class="ghost-button small" data-export="repair" type="button">Export CSV</button></div><div class="table-wrap"><table><thead><tr><th>Vessel</th><th>Type</th><th>Port</th><th>Window</th><th>Status</th><th>Priority</th><th>Action</th></tr></thead><tbody id="repairTable"></tbody></table></div></div>
+        </section>
+
+        <section class="module-section" id="products">
+          <div class="section-head"><div><p class="micro-label">Products desk</p><h2>Spare parts and product enquiries</h2><p>For makers, models, part numbers, delivery urgency, quote status and supplier follow-up.</p></div><button class="ghost-button" data-template="products" type="button">Copy supplier request</button></div>
+          <div class="split-layout">
+            <form class="panel form-grid" id="productForm">
+              <label>Vessel / Ref<input name="vessel" placeholder="Example: Vessel name hidden" /></label><label>Equipment<input name="equipment" required placeholder="Example: Hatch cover rubber, purifier, pump" /></label>
+              <label>Maker<input name="maker" placeholder="Please confirm maker" /></label><label>Model<input name="model" placeholder="Please confirm model" /></label><label>Part number<input name="partNumber" placeholder="Please confirm part number" /></label><label>Required delivery time<input name="delivery" placeholder="Example: urgent, next port, 2 weeks" /></label>
+              <label>Status<select name="status"><option>Received</option><option>Missing details</option><option>Sourcing</option><option>Quoted</option><option>Ordered</option><option>Delivered</option></select></label><label>Priority<select name="priority"><option>Normal</option><option>Urgent</option><option>Critical</option></select></label>
+              <label class="wide">Quantity / Notes<textarea name="notes" placeholder="Quantity, serial number, drawings, photos, delivery port and packaging requirements."></textarea></label><button class="primary-button" type="submit">Save product enquiry</button>
+            </form>
+            <aside class="panel checklist-panel"><p class="micro-label">Always confirm</p><ul><li>Maker, model, part number and required delivery time.</li><li>Genuine, OEM or high-quality alternative.</li><li>Quantity, unit, drawings and photos.</li><li>Delivery port, deadline, packing and courier basis.</li><li>Commission, payment terms and validity.</li></ul></aside>
           </div>
-        </aside>
-      </section>
+          <div class="panel table-panel"><div class="table-toolbar"><h3>Product board</h3><button class="ghost-button small" data-export="products" type="button">Export CSV</button></div><div class="table-wrap"><table><thead><tr><th>Equipment</th><th>Maker</th><th>Model</th><th>Part no.</th><th>Delivery</th><th>Status</th><th>Action</th></tr></thead><tbody id="productTable"></tbody></table></div></div>
+        </section>
 
-      <section class="card-grid three" aria-label="Useful tools">
-        <article class="glass-panel mini-card">
-          <span class="icon-pill">01</span>
-          <h3>Position list</h3>
-          <p>Add vessels, locations, availability, rate indications and hidden source notes.</p>
-        </article>
-        <article class="glass-panel mini-card">
-          <span class="icon-pill">02</span>
-          <h3>Broker filter</h3>
-          <p>Quick checks to avoid forwarding names, direct contacts or chain-sensitive details.</p>
-        </article>
-        <article class="glass-panel mini-card">
-          <span class="icon-pill">03</span>
-          <h3>CP guidance</h3>
-          <p>Fast reference for common offshore, towage, time charter and project forms.</p>
-        </article>
-      </section>
-
-      <section class="glass-panel split-section" id="positions">
-        <div class="section-copy">
-          <p class="eyebrow">Position list system</p>
-          <h2>Add vessel positions</h2>
-          <p>Use this to track open units and leads without losing the chain. Data is saved locally in your browser for demo use.</p>
-        </div>
-
-        <form id="positionForm" class="position-form">
-          <label>
-            Vessel / Ref
-            <input name="vessel" required placeholder="Example: 52m AHT, 106 TBP" />
-          </label>
-          <label>
-            Type
-            <select name="type" required>
-              <option value="AHTS">AHTS</option>
-              <option value="AHT">AHT / Tug</option>
-              <option value="PSV">PSV</option>
-              <option value="MPSV">MPSV / OSV</option>
-              <option value="Barge">Barge</option>
-              <option value="Crew Boat">Crew Boat / FSV</option>
-              <option value="Survey">Survey Vessel</option>
-              <option value="DSV">Diving Support Vessel</option>
-              <option value="Other">Other</option>
-            </select>
-          </label>
-          <label>
-            Region / Location
-            <input name="location" placeholder="Example: East Med, Tuzla, Constanta" />
-          </label>
-          <label>
-            Availability
-            <input name="availability" placeholder="Example: Prompt / from 12 July" />
-          </label>
-          <label>
-            Rate indication
-            <input name="rate" placeholder="Example: USD 18,000/day, WOG" />
-          </label>
-          <label>
-            Status
-            <select name="status">
-              <option value="New">New</option>
-              <option value="Hot">Hot</option>
-              <option value="Checking">Checking</option>
-              <option value="Quoted">Quoted</option>
-              <option value="Fixed">Fixed</option>
-              <option value="Closed">Closed</option>
-            </select>
-          </label>
-          <label class="wide">
-            Public specs / notes
-            <textarea name="publicNotes" placeholder="Specs safe to share: BP, deck space, DP, crane, class, flag, range."></textarea>
-          </label>
-          <label class="wide">
-            Private broker notes
-            <textarea name="privateNotes" placeholder="Hidden: owner/source/contact/chain info. Do not forward this."></textarea>
-          </label>
-          <button class="button primary" type="submit">Save position</button>
-          <button class="button secondary" type="button" id="seedDemo">Load demo positions</button>
-        </form>
-      </section>
-
-      <section class="glass-panel list-section">
-        <div class="list-toolbar">
-          <div>
-            <p class="eyebrow">Live board</p>
-            <h2>Saved positions</h2>
+        <section class="module-section" id="chartering">
+          <div class="section-head"><div><p class="micro-label">Chartering desk</p><h2>Vessel positions and chartering leads</h2><p>For offshore support, towage, barges, OSV, PSV, AHTS and project vessel opportunities.</p></div><button class="ghost-button" data-template="chartering" type="button">Copy owner request</button></div>
+          <div class="split-layout">
+            <form class="panel form-grid" id="charterForm">
+              <label>Vessel / Ref<input name="vessel" required placeholder="Example: 52m AHT, 106 TBP" /></label><label>Type<select name="type"><option>AHTS</option><option>AHT / Tug</option><option>PSV</option><option>MPSV / OSV</option><option>Barge</option><option>Crew Boat / FSV</option><option>Survey Vessel</option><option>DSV</option><option>Other</option></select></label>
+              <label>Region / Location<input name="location" placeholder="Example: East Med, Black Sea, Turkey" /></label><label>Availability<input name="availability" placeholder="Example: prompt, from 12 July" /></label><label>Rate indication<input name="rate" placeholder="Example: USD/day, WOG" /></label><label>Status<select name="status"><option>New</option><option>Hot</option><option>Checking</option><option>Quoted</option><option>Fixed</option><option>Closed</option></select></label>
+              <label class="wide">Public specs / notes<textarea name="publicNotes" placeholder="BP, DP, deck space, crane, class, flag, trading range."></textarea></label><label class="wide">Private broker notes<textarea name="privateNotes" placeholder="Owner/source/contact/chain info. Do not forward."></textarea></label><button class="primary-button" type="submit">Save position</button>
+            </form>
+            <aside class="panel checklist-panel"><p class="micro-label">Chartering checks</p><ul><li>Clarify direct client, contractor or intermediary.</li><li>Confirm start date, duration, scope and minimum specs.</li><li>Protect owner and charterer details until needed.</li><li>Confirm mob, demob, fuel, port costs and payment terms.</li><li>Do not say fixed before subjects are lifted.</li></ul></aside>
           </div>
-          <div class="toolbar-actions">
-            <input id="searchInput" placeholder="Search vessel, type, region" />
-            <select id="statusFilter" aria-label="Filter by status">
-              <option value="All">All status</option>
-              <option value="New">New</option>
-              <option value="Hot">Hot</option>
-              <option value="Checking">Checking</option>
-              <option value="Quoted">Quoted</option>
-              <option value="Fixed">Fixed</option>
-              <option value="Closed">Closed</option>
-            </select>
-            <button class="button secondary small" id="exportCsv" type="button">Export CSV</button>
-            <button class="button danger small" id="clearPositions" type="button">Clear</button>
-          </div>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Vessel</th>
-                <th>Type</th>
-                <th>Location</th>
-                <th>Availability</th>
-                <th>Rate</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody id="positionsTable"></tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="card-grid two" id="workflow">
-        <article class="glass-panel process-card">
-          <p class="eyebrow">Deal flow</p>
-          <h2>From enquiry to fixture</h2>
-          <ol class="process-list">
-            <li>Receive enquiry or vessel availability.</li>
-            <li>Clarify vessel type, location, start date, duration and scope.</li>
-            <li>Filter sensitive chain details before forwarding anything.</li>
-            <li>Source suitable units from owners or trusted channels.</li>
-            <li>Compare suitability, availability, rate, mob/demob and risk.</li>
-            <li>Present clean offer to client with subjects and validity.</li>
-            <li>Negotiate rate, period, delivery, fuel, payment and commission.</li>
-            <li>Issue recap and lift subjects.</li>
-            <li>Move into CP, operations, delivery, hire and final settlement.</li>
-          </ol>
-        </article>
-
-        <article class="glass-panel checklist-card">
-          <p class="eyebrow">Chain protection</p>
-          <h2>Do not forward</h2>
-          <ul class="check-list">
-            <li>Direct owner or contractor contact details</li>
-            <li>End-client identity unless required and approved</li>
-            <li>Broker names inside the chain</li>
-            <li>Internal price assumptions or commission margin</li>
-            <li>Private comments from WhatsApp, email or LinkedIn</li>
-            <li>Documents with signatures, emails, phone numbers or hidden metadata</li>
-          </ul>
-        </article>
-      </section>
-
-      <section class="glass-panel" id="charterparties">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Charterparty reference</p>
-            <h2>Relevant forms to keep close</h2>
-          </div>
-          <p class="note">Reference only. Always verify the latest wording and the agreed rider clauses before using a form.</p>
-        </div>
-        <div class="cp-grid" id="cpGrid"></div>
-      </section>
-
-      <section class="glass-panel split-section" id="templates">
-        <div class="section-copy">
-          <p class="eyebrow">Fast templates</p>
-          <h2>Build a controlled enquiry message</h2>
-          <p>Fill the fields and generate a clean supplier/owner request without giving away the chain.</p>
-        </div>
-        <form id="templateForm" class="position-form">
-          <label>
-            Requirement
-            <input name="requirement" placeholder="Example: AHTS for offshore support" />
-          </label>
-          <label>
-            Area
-            <input name="area" placeholder="Example: Black Sea / East Med" />
-          </label>
-          <label>
-            Start / duration
-            <input name="period" placeholder="Example: prompt, 20 to 30 days" />
-          </label>
-          <label>
-            Minimum specs
-            <input name="specs" placeholder="Example: 80 TBP, DP2 preferred" />
-          </label>
-          <label class="wide">
-            Scope safe to share
-            <textarea name="scope" placeholder="Only include what the owner needs to quote."></textarea>
-          </label>
-          <button class="button primary" type="submit">Generate message</button>
-        </form>
-        <pre class="template-output" id="templateOutput">Your generated message will appear here.</pre>
-      </section>
-    </main>
-
-    <footer class="footer-note">
-      <p>Demo concept for internal testing. Not an official Verge publication until approved.</p>
-    </footer>
+          <div class="panel table-panel"><div class="table-toolbar"><h3>Position board</h3><button class="ghost-button small" data-export="chartering" type="button">Export CSV</button></div><div class="table-wrap"><table><thead><tr><th>Vessel</th><th>Type</th><th>Location</th><th>Availability</th><th>Rate</th><th>Status</th><th>Action</th></tr></thead><tbody id="charterTable"></tbody></table></div></div>
+          <section class="panel cp-section"><div class="table-toolbar"><h3>Charterparty references</h3><p>Reference only. Verify latest forms and rider clauses before commercial use.</p></div><div class="cp-grid" id="cpGrid"></div></section>
+        </section>
+      </main>
+    </div>
   </div>
-
-  <script src="app.js"></script>
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
+  <script src="verge-parent.js"></script>
 </body>
 </html>
