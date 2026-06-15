@@ -1,49 +1,91 @@
-# Verge Desk App Demo
+# Verge Combined Desk App
 
-Internal demo concept for Verge Shipbrokers.
+This repo now contains a real React frontend under `/frontend`, based on the structure of `TobiasFinance/Verge-App`.
 
-This repo now uses the Verge-App structure as the parent idea: dark navy sidebar, top bar and light canvas. The app is divided into three desks:
+The combined app keeps the Verge-App parent layout:
 
-1. Repair
-2. Products
-3. Chartering
+- Dark navy sidebar
+- Slim top bar
+- Light main canvas
+- Verge-style cards, tables and register layout
+- React Router navigation
+- Tailwind/PostCSS setup
 
-## Current modules
+## Main desks
 
-### Repair
+### 1. Repair
+
+For underwater services, afloat repairs, shipyard support and technical attendance.
+
+Includes:
 
 - Repair case register
-- Underwater, afloat repair, shipyard and inspection case input
-- Scope safe to share
-- Private broker notes
-- Copy-ready supplier request
-- CSV export
-
-### Products
-
-- Spare parts and product enquiry register
-- Maker, model, part number and required delivery time fields
+- Vessel / port / ETA / scope fields
+- Status and priority tracking
 - Supplier request generator
 - CSV export
 
-### Chartering
+### 2. Products
+
+For spare parts and product enquiries.
+
+Includes:
+
+- Equipment, maker, model and part number fields
+- Required delivery time field
+- Status and priority tracking
+- Supplier request generator
+- CSV export
+
+### 3. Chartering
+
+For offshore support vessels, towage, barges, PSV, AHTS and project vessel opportunities.
+
+Includes:
 
 - Vessel position list
-- Offshore support, towage, PSV, AHTS, barges and project vessel fields
+- Vessel type, location, availability and rate indication fields
+- Public notes and internal notes
 - Charterparty reference cards
-- Owner / supplier request generator
+- Owner / client message generator
 - CSV export
+
+## How to run
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+## Files imported / recreated from Verge-App structure
+
+- `frontend/package.json`
+- `frontend/public/index.html`
+- `frontend/public/logo.svg`
+- `frontend/public/badge.svg`
+- `frontend/public/badge-header.svg`
+- `frontend/src/index.js`
+- `frontend/src/index.css`
+- `frontend/src/App.js`
+- `frontend/src/App.css`
+- `frontend/src/components/AppShell.js`
+- `frontend/src/components/NotificationBell.js`
+- `frontend/src/context/AuthContext.js`
+- `frontend/tailwind.config.js`
+- `frontend/postcss.config.js`
 
 ## Important note
 
-The repository is public. Do not add real client names, owner names, supplier names, direct emails, phone numbers or sensitive chain information.
+This is still a demo using local browser storage. Do not use it for real sensitive commercial records yet.
 
-For real use, this should be moved into a private app with login, database, permissions and audit trail.
+Before real company use, add:
 
-## Files used by the current app
+- Proper backend database
+- Login and user roles
+- Permission levels
+- Activity log
+- Secure hosting
+- Data backup
 
-- `index.html`
-- `verge-parent.css`
-- `verge-parent.js`
-
-The older `styles.css` and `app.js` are kept in the repo for reference but are no longer loaded by `index.html`.
+The old static root demo files are still present for reference, but the actual combined software is now in `/frontend`.
